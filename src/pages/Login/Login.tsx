@@ -1,9 +1,10 @@
 // Import React Stuff
-import { useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import loginImg from '../../assets/LoginAssets/loginImg.jpg'
+import { getUserToken } from '../../services';
 
 
 import './index.css';
@@ -18,23 +19,14 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    // State variables
-    const [inputs, setInputs] = useState({
-        email: '',
-        password: '',
-    });
-
     // Routes
     const toSettingsView = location.pathname && `/settingsView`;
 
+
     // Handlers
     const handleFormSubmit = async (e: any) => {
-        setInputs({
-            email: e.email,
-            password: e.password
-        })
-
         try {
+            await getUserToken(e.email, e.password);
             // navigate(toSettingsView, { replace: true })
         } catch (error) {
             console.error(error);
