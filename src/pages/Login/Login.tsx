@@ -8,6 +8,8 @@ import { getUserToken } from '../../services';
 
 
 import './index.css';
+import { useDispatch } from 'react-redux';
+import { logUser } from '../../redux/states/user';
 
 const Login = () => {
 
@@ -20,14 +22,15 @@ const Login = () => {
     const navigate = useNavigate();
 
     // Routes
-    const toSettingsView = location.pathname && `/settingsView`;
+    const toPrivate = location.pathname && `/private`;
 
-
+    const dispatch = useDispatch()
     // Handlers
     const handleFormSubmit = async (e: any) => {
         try {
-            await getUserToken(e.email, e.password);
-            // navigate(toSettingsView, { replace: true })
+            const result = await getUserToken(e.email, e.password);
+            dispatch(logUser(result))
+            navigate(toPrivate, { replace: true })
         } catch (error) {
             console.error(error);
         }

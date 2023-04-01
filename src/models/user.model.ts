@@ -1,5 +1,6 @@
-export interface UserInfo{
-    id:number;
-    name:string;
-    email:string;
+export interface UserInfo {
+    localId: string;
+    displayName: string;
+    email: string;
+    idToken: string;
 }

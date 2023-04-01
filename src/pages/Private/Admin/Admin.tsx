@@ -1,6 +1,9 @@
+import React from 'react'
+
 const Admin = () => {
     return (
-        <div>Hola este es Admin</div>
+        <div>Admin</div>
     )
 }
+
 export default Admin
