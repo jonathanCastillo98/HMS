@@ -9,7 +9,9 @@ import { getUserToken } from '../../services';
 
 import './index.css';
 import { useDispatch } from 'react-redux';
-import { logUser } from '../../redux/states/user';
+import { UserKey, logUser, resetUser } from '../../redux/states/user';
+import { clearLocalStorage } from '../../utilities';
+import { PublicRoutes } from '../../models';
 
 const Login = () => {
 
@@ -21,6 +23,12 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        clearLocalStorage(UserKey);
+        dispatch(resetUser())
+        navigate(`/${PublicRoutes.LOGIN}`, { replace: true })
+    }, [])
+
     // Routes
     const toPrivate = location.pathname && `/private`;
 
@@ -29,7 +37,7 @@ const Login = () => {
     const handleFormSubmit = async (e: any) => {
         try {
             const result = await getUserToken(e.email, e.password);
-            dispatch(logUser(result))
+            dispatch(logUser({ ...result }))
             navigate(toPrivate, { replace: true })
         } catch (error) {
             console.error(error);

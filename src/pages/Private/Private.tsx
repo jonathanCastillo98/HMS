@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import { Route, Navigate } from "react-router-dom"
 import { PrivateRoutes } from "../../models"
 import { lazy } from "react"
 import RoutesWithNotFound from "../../utilities/routesWithNotFound.utility"
