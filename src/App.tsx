@@ -1,10 +1,11 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { PrivateRoutes, PublicRoutes } from './models';
 import { AuthGuard } from './guards';
-import { RoutesWithNotFound } from './utilities';
 import { Suspense, lazy } from 'react';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import RoutesWithNotFound from './utilities/routesWithNotFound.utility';
+import { Logout } from './components/Logout';
 
 const Login = lazy(() => import('./pages/Login/Login'));
 const Private = lazy(() => import('./pages/Private/Private'));
@@ -26,6 +27,7 @@ function App() {
                 <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<Private />} />
               </Route>
             </RoutesWithNotFound>
+            <Logout />
           </BrowserRouter>
         </Provider>
       </Suspense>

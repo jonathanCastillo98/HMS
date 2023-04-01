@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { PrivateRoutes } from "../../models"
-import { RoutesWithNotFound } from "../../utilities"
 import { lazy } from "react"
+import RoutesWithNotFound from "../../utilities/routesWithNotFound.utility"
 
 const Admin = lazy(() => import('./Admin/Admin'))
 const Home = lazy(() => import('./Home/Home'))
