@@ -1,5 +1,5 @@
-const tokenUrl = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCZpC9dgIcL3LEwi77H-sEuP1zQndiPoG8"
-const createDoctorUrl = "http://localhost:3000/admin/doctors/"
+// const tokenUrl = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCZpC9dgIcL3LEwi77H-sEuP1zQndiPoG8"
+const tokenUrl = "http://localhost:3000/login"
 
 export const getUserToken = (email: string, password: string) => {
 

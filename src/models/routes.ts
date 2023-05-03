@@ -7,3 +7,9 @@ export const PrivateRoutes = {
     ADMIN: 'admin',
     HOME: 'home',
 };
+
+export const AdminRoutes = {
+    DOCTORS: "doctors",
+    PATIENTS: "patients",
+    APPOINTMENTS: "appointments"
+}

@@ -1,7 +1,7 @@
 // Import React Stuff
-import { SyntheticEvent, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import loginImg from '../../assets/LoginAssets/loginImg.jpg'
 import { getUserToken } from '../../services';
@@ -11,34 +11,29 @@ import './index.css';
 import { useDispatch } from 'react-redux';
 import { UserKey, logUser, resetUser } from '../../redux/states/user';
 import { clearLocalStorage } from '../../utilities';
-import { PublicRoutes } from '../../models';
+import { PrivateRoutes, PublicRoutes } from '../../models';
 
 const Login = () => {
-
     // Stuff to control the form
     const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: { email: "", password: "" } });
 
 
     // To navigate other parte of the app
-    const location = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
         clearLocalStorage(UserKey);
         dispatch(resetUser())
-        navigate(`/${PublicRoutes.LOGIN}`, { replace: true })
+        navigate(`/${PublicRoutes.LOGIN}`, { replace: false })
     }, [])
-
-    // Routes
-    const toPrivate = location.pathname && `/private`;
 
     const dispatch = useDispatch()
     // Handlers
     const handleFormSubmit = async (e: any) => {
         try {
             const result = await getUserToken(e.email, e.password);
-            dispatch(logUser({ ...result }))
-            navigate(toPrivate, { replace: true })
+            dispatch(logUser(result))
+            navigate(`/${PrivateRoutes.PRIVATE}`, { replace: true })
         } catch (error) {
             console.error(error);
         }

@@ -1,9 +1,15 @@
-import React from 'react'
+import './admin.css'
+import { BodySection } from './BodySection'
+import { Sidebar } from './SidebarSection'
+
+
 
 const Admin = () => {
     return (
-        <div>Admin</div>
+        <div className="container">
+            <Sidebar />
+            <BodySection />
+        </div>
     )
 }
-
 export default Admin
